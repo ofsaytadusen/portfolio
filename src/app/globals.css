@@ -8,36 +8,25 @@
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
+  font-family: 'Inter', sans-serif;
   overflow-x: hidden;
-  font-family: sans-serif;
+  /* İnce kumlu (grain) doku - BaseDash hissiyatı için */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
-/* BaseDash Style Animated Background Glows */
-.bg-glow-container {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
+/* Scrollbar Gizleme (Daha temiz görünüm) */
+::-webkit-scrollbar {
+  width: 8px;
 }
-
-.glow-1 {
-  position: absolute;
-  top: -10%;
-  left: -10%;
-  width: 60%;
-  height: 60%;
-  background: radial-gradient(circle, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
-  filter: blur(100px);
+::-webkit-scrollbar-track {
+  background: #030303; 
 }
-
-.glow-2 {
-  position: absolute;
-  bottom: -10%;
-  right: -10%;
-  width: 50%;
-  height: 50%;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-  filter: blur(100px);
+::-webkit-scrollbar-thumb {
+  background: #222; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #444; 
 }
