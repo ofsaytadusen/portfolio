@@ -4,29 +4,29 @@
 
 :root {
   --background: #030303;
-  --foreground: #ffffff;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: #030303;
+  color: #ffffff;
   font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
-  /* İnce kumlu (grain) doku - BaseDash hissiyatı için */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  /* Hafif grenli doku */
+  background-image: radial-gradient(#ffffff05 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-/* Scrollbar Gizleme (Daha temiz görünüm) */
-::-webkit-scrollbar {
-  width: 8px;
+/* BaseDash Style Spotlight Card */
+.base-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
 }
-::-webkit-scrollbar-track {
-  background: #030303; 
-}
-::-webkit-scrollbar-thumb {
-  background: #222; 
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #444; 
+
+.base-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
 }

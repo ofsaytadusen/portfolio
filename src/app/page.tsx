@@ -1,97 +1,66 @@
 "use client";
-import React, { MouseEvent, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '@/components/Header';
-import ProjectCard from '@/components/ProjectCard';
+import SpotlightCard from '@/components/SpotlightCard';
 import { getTrendingRepos } from '@/lib/github';
 
-// Sayfa yüklenirken datayı çekmek için asenkron yapı yerine React'in standart yapısını kullanıyoruz
 export default function Home() {
-  const [repos, setRepos] = React.useState<any[]>([]);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [opacity, setOpacity] = useState(0);
+  const [repos, setRepos] = useState<any[]>([]);
 
-  // Verileri yükleme
-  React.useEffect(() => {
-    getTrendingRepos().then(data => setRepos(data)).catch(console.error);
+  useEffect(() => {
+    getTrendingRepos().then(setRepos).catch(console.error);
   }, []);
 
-  // Mission bölümü için BaseDash fare efekti
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
-
   return (
-    <main className="min-h-screen selection:bg-white/20">
+    <main className="min-h-screen">
       <Header />
       
-      {/* HERO SECTION */}
-      <section id="home" className="pt-48 pb-20 px-6 flex flex-col items-center text-center">
-        <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-6 text-white">
-          Code. <span className="text-white/30">Create.</span> Inspire.
+      {/* Hero Section */}
+      <section className="pt-52 pb-24 px-10 text-center">
+        <h1 className="text-7xl md:text-9xl font-black tracking-tighter mb-8 leading-none">
+          OFFSIDE <span className="text-white/20">DIGITAL</span>
         </h1>
-        <p className="text-lg md:text-xl text-white/50 max-w-2xl font-medium">
-          Building high-performance digital experiences and shaping the future of the web with modern architecture.
+        <p className="text-white/40 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
+          Crafting high-performance digital systems and next-generation software architectures.
         </p>
       </section>
 
-      {/* MISSION SECTION (3D'nin yerine gelen, BaseDash efektli alan) */}
-      <section className="py-20 px-6 max-w-4xl mx-auto">
-        <div 
-          onMouseMove={handleMouseMove}
-          onMouseEnter={() => setOpacity(1)}
-          onMouseLeave={() => setOpacity(0)}
-          className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#0a0a0a] p-12 md:p-20 text-center transition-all hover:border-white/20"
-        >
-          {/* Işık Efekti */}
-          <div
-            className="pointer-events-none absolute -inset-px transition-opacity duration-300"
-            style={{
-              opacity,
-              background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.06), transparent 40%)`,
-            }}
-          />
-          
-          <div className="relative z-10">
-            <span className="text-[10px] font-bold tracking-[0.4em] text-white/40 uppercase mb-6 block">
-              Our Mission
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight text-white leading-tight">
-              High performance, <br className="hidden md:block" />
-              <span className="text-white/40">zero compromise.</span>
-            </h2>
-            <p className="text-white/50 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-              We combine cutting-edge technology with high-end design to build products that don't just work, but inspire the next generation of digital infrastructure.
-            </p>
-          </div>
-        </div>
+      {/* Mission Section (Basedash Style) */}
+      <section className="px-10 py-20 max-w-5xl mx-auto">
+        <SpotlightCard className="p-16 md:p-24 text-center">
+          <span className="text-[10px] font-bold tracking-[0.6em] text-white/20 uppercase mb-8 block">Our Mission</span>
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">High performance, <br/><span className="text-white/30">zero compromise.</span></h2>
+          <p className="text-white/40 text-lg leading-relaxed max-w-2xl mx-auto">
+            We merge cutting-edge engineering with refined aesthetics to build products that redefine the digital landscape.
+          </p>
+        </SpotlightCard>
       </section>
 
-      {/* PROJECTS SECTION */}
-      <section id="projects" className="max-w-7xl mx-auto px-6 py-32">
-        <div className="mb-16">
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 text-white">
-            Weekly <span className="text-white/30">Trends</span>
-          </h2>
-          <p className="text-white/50 font-medium">
-            The most influential open-source projects from the GitHub ecosystem.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Projects Section */}
+      <section id="projects" className="px-10 py-32 max-w-7xl mx-auto">
+        <h2 className="text-5xl font-black tracking-tighter mb-20">Weekly <span className="text-white/20">Trends</span></h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {repos.length > 0 ? repos.map((repo: any) => (
-            <ProjectCard key={repo.id || repo.full_name} repo={repo} />
+            <SpotlightCard key={repo.id || repo.full_name} className="p-8 h-[320px] flex flex-col">
+              <div className="flex justify-between items-start mb-8">
+                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10">🚀</div>
+                <span className="text-[9px] font-bold text-white/40 uppercase tracking-widest">{repo.language || 'Code'}</span>
+              </div>
+              <h3 className="text-lg font-bold mb-4 tracking-tight">{repo.name}</h3>
+              <p className="text-sm text-white/30 leading-relaxed line-clamp-3 mb-auto">{repo.description || "Building the future of software development."}</p>
+              <div className="pt-6 border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-white/20">
+                <span>⭐ {repo.stargazers_count?.toLocaleString()}</span>
+                <a href={repo.html_url} target="_blank" className="hover:text-white transition-colors tracking-tighter">SOURCE ↗</a>
+              </div>
+            </SpotlightCard>
           )) : (
-            <div className="col-span-full text-center py-20 text-white/30 animate-pulse">
-              Loading projects...
-            </div>
+            <div className="col-span-full py-20 text-center text-white/10 tracking-[1em] uppercase">Initializing...</div>
           )}
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="py-12 text-center border-t border-white/5">
-        <p className="text-[10px] font-bold tracking-[0.5em] text-white/30 uppercase">
+      <footer className="py-24 text-center border-t border-white/5">
+        <p className="text-[9px] font-bold tracking-[0.8em] text-white/10 uppercase">
           © 2026 OFFSIDE DIGITAL SOLUTIONS
         </p>
       </footer>
