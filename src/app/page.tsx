@@ -1,9 +1,7 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import Laptop3D from '@/components/Laptop3D';
+import Mission from '@/components/Mission';
 import ProjectCard from '@/components/ProjectCard';
-import BackgroundGlow from '@/components/BackgroundGlow';
-import MouseCursor from '@/components/MouseCursor'; 
 import { ThemeProvider } from '@/components/ThemeContext';
 import { getTrendingRepos } from '@/lib/github';
 
@@ -12,51 +10,47 @@ export default async function Home() {
 
   return (
     <ThemeProvider>
-      <main className="relative min-h-screen text-white overflow-x-hidden selection:bg-white/20">
+      <main className="relative min-h-screen text-white">
         
-        {/* Mouse İmleci Parlama Efekti */}
-        <MouseCursor />
+        {/* BaseDash Style Background Glows */}
+        <div className="bg-glow-container">
+          <div className="glow-1" />
+          <div className="glow-2" />
+        </div>
         
-        {/* Arka Plan: Hareketli Işıklar ve Grain Dokusu */}
-        <BackgroundGlow />
-        
-        {/* Navigasyon: Yeni Logo ve Menü */}
         <Header />
         
-        {/* Hero: Giriş Bölümü */}
-        <section id="home" className="relative z-10 pt-32">
+        {/* Hero Section */}
+        <section id="home" className="pt-40 pb-20">
           <Hero />
         </section>
 
-        {/* 3D Obje Alanı */}
-        <section className="relative h-[60vh] flex items-center justify-center z-10">
-           <div className="w-full max-w-5xl h-full">
-              <Laptop3D />
-           </div>
+        {/* Mission Section (Replaced 3D) */}
+        <section className="py-20 px-6">
+           <Mission />
         </section>
         
-        {/* Projeler: Cam Efektli Kartlar */}
-        <section id="projects" className="relative z-10 py-32 px-6 max-w-7xl mx-auto">
-          <div className="mb-20">
+        {/* Projects Section */}
+        <section id="projects" className="py-32 px-6 max-w-7xl mx-auto">
+          <div className="mb-20 text-center md:text-left">
             <h2 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter">
-              Haftalık <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">Trendler</span>
+              Weekly <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">Trends</span>
             </h2>
-            <p className="text-gray-500 text-lg max-w-2xl opacity-70 italic">
-              GitHub ekosisteminde bu haftanın en popüler projeleri.
+            <p className="text-gray-500 text-lg max-w-2xl opacity-70">
+              The most influential open-source projects from the GitHub ecosystem this week.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {repos.map((repo: any) => (
               <ProjectCard key={repo.full_name} repo={repo} />
             ))}
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="relative z-10 py-20 text-center border-t border-white/5 bg-black/20 backdrop-blur-md">
-          <p className="text-[10px] text-gray-600 tracking-[0.5em] uppercase font-bold">
-            © 2026 OFFSIDE DIGITAL SOLUTIONS
+        <footer className="py-20 text-center border-t border-white/5">
+          <p className="text-[10px] text-gray-600 tracking-[0.6em] uppercase font-bold">
+            © 2026 OFFSIDE DIGITAL SOLUTIONS • ALL RIGHTS RESERVED
           </p>
         </footer>
 
