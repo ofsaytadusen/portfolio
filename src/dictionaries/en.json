@@ -1,0 +1,16 @@
+{
+  "nav.home": "Home",
+  "nav.projects": "Projects",
+  "nav.contact": "Contact",
+  "hero.greeting": "Hi, I'm",
+  "hero.name": "Contactoffside",
+  "hero.title": "Full-Stack Developer & Creative Technologist",
+  "hero.subtitle": "Building modern, performant web experiences with cutting-edge technologies.",
+  "hero.cta": "View Projects",
+  "projects.title": "Trending This Week",
+  "projects.subtitle": "Discover the hottest repositories on GitHub right now.",
+  "projects.stars": "stars",
+  "projects.forks": "forks",
+  "footer.rights": "All rights reserved.",
+  "footer.built": "Built with Next.js & Tailwind CSS"
+}

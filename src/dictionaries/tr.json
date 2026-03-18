@@ -1,0 +1,16 @@
+{
+  "nav.home": "Ana Sayfa",
+  "nav.projects": "Projeler",
+  "nav.contact": "İletişim",
+  "hero.greeting": "Merhaba, ben",
+  "hero.name": "Contactoffside",
+  "hero.title": "Full-Stack Geliştirici & Yaratıcı Teknolog",
+  "hero.subtitle": "Modern ve yüksek performanslı web deneyimleri oluşturuyorum.",
+  "hero.cta": "Projeleri Gör",
+  "projects.title": "Bu Haftanın Trendleri",
+  "projects.subtitle": "GitHub'daki en popüler depoları keşfedin.",
+  "projects.stars": "yıldız",
+  "projects.forks": "çatal",
+  "footer.rights": "Tüm hakları saklıdır.",
+  "footer.built": "Next.js & Tailwind CSS ile geliştirildi"
+}
